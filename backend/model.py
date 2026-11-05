@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from transformers import AutoTokenizer, XLMRobertaConfig, XLMRobertaModel
-
+from pathlib import Path
 
 class EarlyShieldModel(nn.Module):
     def __init__(self, model_name, num_risk_classes=3, num_tactics=8):
@@ -115,8 +115,10 @@ class EarlyShieldInference:
 
 if __name__ == "__main__":
     checkpoint_path = (
-        "/Users/john/Desktop/xlmr_unified_tanglish_best.pth"
-    )
+    Path(__file__).resolve().parent
+    / "models"
+    / "xlmr_unified_tanglish_best.pth"
+)
 
     detector = EarlyShieldInference(checkpoint_path)
 

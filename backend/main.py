@@ -1,5 +1,5 @@
 from contextlib import asynccontextmanager
-
+from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
@@ -12,7 +12,11 @@ from routes.history import router as history_router
 from database import get_db
 from routes.dashboard import router as dashboard_router
 
-CHECKPOINT_PATH = "/Users/john/Desktop/xlmr_unified_tanglish_best.pth"
+BASE_DIR = Path(__file__).resolve().parent
+
+CHECKPOINT_PATH = (
+    BASE_DIR / "models" / "xlmr_unified_tanglish_best.pth"
+)
 
 
 @asynccontextmanager
